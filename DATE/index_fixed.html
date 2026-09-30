@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outing Invitation ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff0f5,#ffe4ec,#fff7fa);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    color:#333;
+    overflow-x:hidden;
+}
+
+.card{
+    position:relative;
+    width:100%;
+    max-width:440px;
+    background:rgba(255,255,255,.94);
+    border-radius:28px;
+    padding:30px 22px;
+    text-align:center;
+    box-shadow:0 15px 45px rgba(190,70,110,.18);
+    animation:pop .7s ease;
+}
+
+@keyframes pop{
+    from{opacity:0;transform:scale(.85)}
+    to{opacity:1;transform:scale(1)}
+}
+
+.heart{
+    font-size:55px;
+    animation:beat 1.2s infinite;
+}
+
+@keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.18)}
+}
+
+h1{
+    color:#d6336c;
+    font-size:28px;
+    margin:10px 0;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:20px;
+    line-height:1.5;
+    font-size:15px;
+}
+
+.section{
+    margin:18px 0;
+    text-align:left;
+}
+
+.section h3{
+    margin-bottom:8px;
+    color:#555;
+    font-size:14px;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    border:1px solid #f1bfd0;
+    border-radius:14px;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+}
+
+.vibes{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.vibe{
+    border:2px solid #f4d2dd;
+    padding:12px 8px;
+    border-radius:16px;
+    cursor:pointer;
+    transition:.25s;
+    background:white;
+    text-align:center;
+}
+
+.vibe:hover{
+    transform:translateY(-3px);
+}
+
+.vibe.selected{
+    border-color:#d6336c;
+    background:#fff0f5;
+    transform:scale(1.03);
+}
+
+.vibe span{
+    display:block;
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+button{
+    width:100%;
+    border:0;
+    padding:15px;
+    border-radius:18px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:12px;
+    transition:.25s;
+}
+
+.yes{
+    background:#d6336c;
+    color:white;
+}
+
+.yes:hover{
+    background:#bd2458;
+    transform:translateY(-2px);
+}
+
+.no{
+    background:#f4f4f4;
+    color:#666;
+    transition:left 0.2s ease, top 0.2s ease;
+}
+
+.hidden{
+    display:none;
+}
+
+.apology-box{
+    background:#fff5f7;
+    border:2px dashed #f1bfd0;
+    border-radius:20px;
+    padding:18px;
+    text-align:left;
+    line-height:1.6;
+    color:#444;
+    font-size:14px;
+    margin:15px 0;
+}
+
+.photo-wrapper{
+    margin:15px 0 8px;
+}
+
+.photo-wrapper img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.caption{
+    font-size:15px;
+    font-weight:bold;
+    color:#d6336c;
+    margin:8px 0;
+}
+
+.music-player{
+    margin-top:12px;
+    background:#fff;
+    padding:8px 12px;
+    border-radius:14px;
+    border:1px solid #ffd1df;
+    font-size:13px;
+    color:#777;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.agreement{
+    background:#fff7d6;
+    border:2px dashed #e5b84c;
+    border-radius:20px;
+    padding:20px;
+    margin-top:15px;
+    text-align:left;
+}
+
+.agreement h2{
+    text-align:center;
+    color:#9b7010;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
+.agreement p{
+    margin:8px 0;
+    line-height:1.45;
+    font-size:14px;
+}
+
+.price{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    color:#d6336c;
+    margin:12px 0;
+}
+
+.success{
+    font-size:40px;
+    margin:10px;
+}
+
+.small{
+    font-size:13px;
+    color:#888;
+    margin-top:12px;
+}
+
+.floating-heart{
+    position:fixed;
+    bottom:-30px;
+    font-size:20px;
+    animation:floatUp 5s linear forwards;
+    pointer-events:none;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+
+    <!-- PAGE 1 -->
+    <div id="page1">
+        <div class="heart">❤️</div>
+        <h1>Hey Torture 👀</h1>
+        <p class="subtitle">
+            I have a very important question for you...<br>
+            Would you like to go on an outing with me? 🥹
+        </p>
+
+        <button class="yes" onclick="showPage2()">
+            YES ❤️
+        </button>
+
+        <button id="noBtn" class="no" onmouseover="dodgeNo()" onclick="dodgeNo()" ontouchstart="dodgeNo()">
+            NO 😭
+        </button>
+
+        <p id="noMessage" class="small"></p>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div id="page2" class="hidden">
+        <div class="heart">🥰</div>
+        <h1>yayyy torture ❤️</h1>
+        <p class="subtitle">
+            Okay, let's plan our little outing!
+        </p>
+
+        <div class="section">
+            <h3>📅 Pick a date</h3>
+            <input type="date" id="date">
+        </div>
+
+        <div class="section">
+            <h3>⏰ Pick a time</h3>
+            <input type="time" id="time">
+        </div>
+
+        <div class="section">
+            <h3>✨ Choose our vibe</h3>
+            <div class="vibes">
+                <div class="vibe" onclick="selectVibe(this,'☕ Coffee')">
+                    <span>☕</span> Coffee
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🍛 Lunch')">
+                    <span>🍛</span> Lunch
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🍽️ Dinner')">
+                    <span>🍽️</span> Dinner
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🛕 Temple')">
+                    <span>🛕</span> Temple
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🌸 Park')">
+                    <span>🌸</span> Park
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🎬 Movie')">
+                    <span>🎬</span> Movie
+                </div>
+                <div class="vibe" onclick="selectVibe(this,'🏍️ Bike Ride')">
+                    <span>🏍️</span> Bike Ride
+                </div>
+            </div>
+        </div>
+
+        <button class="yes" onclick="showApologyPage()">
+            Next Step ❤️
+        </button>
+    </div>
+
+    <!-- APOLOGY & MEMORY PAGE -->
+    <div id="pageApology" class="hidden">
+        <div class="heart">💌</div>
+        <h1>A Small Apology... 🥺</h1>
+
+        <div class="apology-box">
+            Dear Torture,<br><br>
+            I know I can be annoying or make mistakes sometimes, but you mean a lot to me. If I ever upset you or acted silly, I am truly sorry from the bottom of my heart. Thank you for always being there and tolerating me! ❤️
+        </div>
+
+        <div class="photo-wrapper">
+            <img id="memoryImg" src="bartah.jpeg" alt="Memory Photo">
+        </div>
+
+        <div class="caption">
+            ✨ Best moment of my life ✨
+        </div>
+
+        <div class="music-player">
+            🎵 <span>Song: Our Favorite Tune</span>
+            <audio id="bgSong" loop>
+                <source src="song.mp3" type="audio/mp3">
+            </audio>
+        </div>
+
+        <button class="yes" onclick="confirmPlan()">
+            Confirm Outing ❤️
+        </button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div id="page3" class="hidden">
+        <div class="success">🎉</div>
+        <h1>PLAN CONFIRMED ❤️</h1>
+        <p class="subtitle">
+            Torture, our outing is officially booked! 😌
+        </p>
+
+        <div class="agreement">
+            <h2>📜 Outing Agreement™</h2>
+            <p>👤 <b>Guest:</b> Torture</p>
+            <p>📅 <b>Date:</b> <span id="showDate"></span></p>
+            <p>⏰ <b>Time:</b> <span id="showTime"></span></p>
+            <p>✨ <b>Vibe:</b> <span id="showVibe"></span></p>
+            <p>❤️ <b>Conditions:</b></p>
+            <p>
+                • Smiling is compulsory 😌<br>
+                • No cancelling last minute 🚫<br>
+                • Good vibes only ✨<br>
+                • Memories must be created 📸
+            </p>
+            <div class="price">₹499</div>
+            <p style="text-align:center;">
+                <b>Non-refundable Outing Fee 😂</b>
+            </p>
+        </div>
+
+        <button class="yes" onclick="payPrank()">
+            Pay ₹499 💸
+        </button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div id="page4" class="hidden">
+        <div class="success">😂❤️</div>
+        <h1>HAHA! GOT YOU! 😭</h1>
+        <p class="subtitle">
+            You really thought you had to pay ₹499?! 😂
+        </p>
+
+        <div class="agreement">
+            <h2>💰 PAYMENT STATUS</h2>
+            <p style="text-align:center;font-size:20px;">
+                ❌ Payment not required
+            </p>
+            <p style="text-align:center;">
+                Your only payment is...
+            </p>
+            <div class="price">
+                ONE SMILE 😊
+            </div>
+            <p style="text-align:center;">
+                And one unforgettable outing ❤️
+            </p>
+        </div>
+
+        <button class="yes" onclick="finalPage()">
+            Okay, Let's Go! 🥰
+        </button>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div id="page5" class="hidden">
+        <div class="success">💖</div>
+        <h1>It's a Date! 🥹</h1>
+        <p class="subtitle">
+            See you soon, Torture ❤️<br><br>
+            Let's make some beautiful memories together. ✨
+        </p>
+
+        <div style="font-size:45px;margin:15px;">
+            🫶🏻 🏍️ ☕ 📸 ❤️
+        </div>
+
+        <p class="small">
+            Outing Agreement™ — officially approved 😌
+        </p>
+    </div>
+
+</div>
+
+<script>
+// Paste your Google Apps Script Web App URL here:
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyrKW_QTYlRWlJ5TYmACCZKHMVAbJF-OexDYm6nWgBEMjubgXxaADfZdIOJevFX9uPeFA/exec";
+
+let selectedVibe = "";
+
+function sendDataToSheet(date, time, vibe) {
+    if (!SCRIPT_URL || SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+        console.error("Google Apps Script URL is missing.");
+        return;
+    }
+
+    const body = new URLSearchParams({
+        date: date,
+        time: time,
+        vibe: vibe
+    });
+
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: body.toString()
+    }).catch(err => console.error("Error sending response:", err));
+}
+
+function dodgeNo() {
+    const card = document.getElementById("card");
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.style.position = "absolute";
+
+    const maxX = card.clientWidth - noBtn.offsetWidth - 20;
+    const maxY = card.clientHeight - noBtn.offsetHeight - 20;
+
+    const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+
+    const messages = [
+        "Can't click this! 😜",
+        "Nope! Try YES instead 😌",
+        "Too slow! 😂",
+        "You have no choice 👀❤️"
+    ];
+    document.getElementById("noMessage").innerText =
+        messages[Math.floor(Math.random() * messages.length)];
+}
+
+function showPage2(){
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+    createHearts();
+}
+
+function selectVibe(element, vibe){
+    document.querySelectorAll(".vibe").forEach(v => {
+        v.classList.remove("selected");
+    });
+    element.classList.add("selected");
+    selectedVibe = vibe;
+}
+
+function showApologyPage(){
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    if(!date || !time || !selectedVibe){
+        alert("Please choose date, time and vibe first 😭❤️");
+        return;
+    }
+
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("pageApology").classList.remove("hidden");
+
+    const audio = document.getElementById("bgSong");
+    if(audio) {
+        audio.play().catch(() => {});
+    }
+
+    createHearts();
+}
+
+function confirmPlan(){
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    const formattedDate = new Date(date + "T00:00:00").toLocaleDateString(
+        "en-IN",
+        { day: "numeric", month: "long", year: "numeric" }
+    );
+
+    document.getElementById("showDate").innerText = formattedDate;
+    document.getElementById("showTime").innerText = time;
+    document.getElementById("showVibe").innerText = selectedVibe;
+
+    // Send the selections silently to Google Sheets
+    sendDataToSheet(formattedDate, time, selectedVibe);
+
+    document.getElementById("pageApology").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+
+    createHearts();
+}
+
+function payPrank(){
+    document.getElementById("page3").classList.add("hidden");
+    document.getElementById("page4").classList.remove("hidden");
+    createHearts();
+}
+
+function finalPage(){
+    document.getElementById("page4").classList.add("hidden");
+    document.getElementById("page5").classList.remove("hidden");
+    createHearts();
+}
+
+function createHearts(){
+    for(let i = 0; i < 8; i++){
+        setTimeout(() => {
+            const heart = document.createElement("div");
+            heart.className = "floating-heart";
+            heart.innerHTML = ["❤️","💖","💕","💗","✨"][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }, i * 250);
+    }
+}
+</script>
+
+</body>
+</html>
